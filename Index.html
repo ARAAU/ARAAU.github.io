@@ -3,11 +3,230 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Web Page</title>
+    <title>Leaderboard</title>
+    <style>
+        /* CSS for styling */
+        body {
+            font-family: Arial, sans-serif;
+        }
+        table {
+            border-collapse: collapse;
+            width: 70%;
+            margin: 20px auto;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #333;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #ddd;
+        }
+        .graph {
+            height: 20px;
+            background-color: #FF0000; /* Red color */
+            width: 0; /* Initialize the width to zero */
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Welcome to My Web Page</h1>
-    </header>
+    <h1>Skærmtid challenge - AASKO 200A</h1>
+
+    <div class="bar-graph">
+        <!-- Bar graph for Player 1 -->
+        <div class="player-graph">
+            <span class="player-name" id="playerName1"></span>
+            <div class="graph" id="graph1"></div>
+        </div>
+        
+        <!-- Bar graph for Player 2 -->
+        <div class="player-graph">
+            <span class="player-name" id="playerName2"></span>
+            <div class="graph" id="graph2"></div>
+        </div>
+    </div>
+
+        <!-- Bar graph for Player 3 -->
+        <div class="player-graph">
+            <span class="player-name" id="playerName3"></span>
+            <div class="graph" id="graph3"></div>
+        </div>
+    </div>
+
+        <!-- Bar graph for Player 4 -->
+        <div class="player-graph">
+            <span class="player-name" id="playerName4"></span>
+            <div class="graph" id="graph4"></div>
+        </div>
+    </div>
+        <!-- Bar graph for Player 5 -->
+        <div class="player-graph">
+            <span class="player-name" id="playerName5"></span>
+            <div class="graph" id="graph5"></div>
+        </div>
+    </div>
+        <!-- Bar graph for Player 6 -->
+        <div class="player-graph">
+            <span class="player-name" id="playerName6"></span>
+            <div class="graph" id="graph6"></div>
+        </div>
+    </div>
+        <!-- Bar graph for Player 7 -->
+        <div class="player-graph">
+            <span class="player-name" id="playerName7"></span>
+            <div class="graph" id="graph7"></div>
+        </div>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Navn</th>
+                <th>Daglig skærmtid (selvangivelse)</th>
+                <th></th> <!-- Empty cell for spacing -->
+                <th></th> <!-- Empty cell for spacing -->
+                <th>Antal dage</th>
+                <th>Skærmtid i alt</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="text" id="name1" placeholder="Navn"></td>
+                <td><input type="number" id="input1" step="0.01" placeholder="Skærmtid i dag"></td>
+                <td></td> <!-- Empty cell for spacing -->
+                <td><button onclick="updateScore(1)">Submit</button></td>
+                <td id="submissions1">0</td>
+                <td id="score1">0</td>
+            </tr>
+            <!-- Repeat the above row structure for other players -->
+            <tr>
+                <td><input type="text" id="name2" placeholder="Navn"></td>
+                <td><input type="number" id="input2" step="0.01" placeholder="Skærmtid i dag"></td>
+                <td></td> <!-- Empty cell for spacing -->
+                <td><button onclick="updateScore(2)">Submit</button></td>
+                <td id="submissions2">0</td>
+                <td id="score2">0</td>
+            </tr>
+            <tr>
+                <td><input type="text" id="name3" placeholder="Navn"></td>
+                <td><input type="number" id="input3" step="0.01" placeholder="Skærmtid i dag"></td>
+                <td></td> <!-- Empty cell for spacing -->
+                <td><button onclick="updateScore(3)">Submit</button></td>
+                <td id="submissions3">0</td>
+                <td id="score3">0</td>
+            </tr>
+            <tr>
+                <td><input type="text" id="name4" placeholder="Navn"></td>
+                <td><input type="number" id="input4" step="0.01" placeholder="Skærmtid i dag"></td>
+                <td></td> <!-- Empty cell for spacing -->
+                <td><button onclick="updateScore(4)">Submit</button></td>
+                <td id="submissions4">0</td>
+                <td id="score4">0</td>
+            </tr>
+            <tr>
+                <td><input type="text" id="name5" placeholder="Navn"></td>
+                <td><input type="number" id="input5" step="0.01" placeholder="Skærmtid i dag"></td>
+                <td></td> <!-- Empty cell for spacing -->
+                <td><button onclick="updateScore(5)">Submit</button></td>
+                <td id="submissions5">0</td>
+                <td id="score5">0</td>
+            </tr>
+            <tr>
+                <td><input type="text" id="name6" placeholder="Navn"></td>
+                <td><input type="number" id="input6" step="0.01" placeholder="Skærmtid i dag"></td>
+                <td></td> <!-- Empty cell for spacing -->
+                <td><button onclick="updateScore(6)">Submit</button></td>
+                <td id="submissions6">0</td>
+                <td id="score6">0</td>
+            </tr>
+            <tr>
+                <td><input type="text" id="name7" placeholder="Navn"></td>
+                <td><input type="number" id="input7" step="0.01" placeholder="Skærmtid i dag"></td>
+                <td></td> <!-- Empty cell for spacing -->
+                <td><button onclick="updateScore(7)">Submit</button></td>
+                <td id="submissions7">0</td>
+                <td id="score7">0</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <script>
+        // Flag to track whether player name has been submitted
+        let playerNameSubmitted1 = false;
+        let playerNameSubmitted2 = false;
+        let playerNameSubmitted3 = false;
+        let playerNameSubmitted4 = false;
+        let playerNameSubmitted5 = false;
+        let playerNameSubmitted6 = false;
+        let playerNameSubmitted7 = false;
+
+        // JavaScript to update scores, bar graphs, and submission count
+        function updateScore(playerNumber) {
+            const inputId = `input${playerNumber}`;
+            const scoreId = `score${playerNumber}`;
+            const graphId = `graph${playerNumber}`;
+            const nameId = `name${playerNumber}`;
+            const playerNameId = `playerName${playerNumber}`;
+            const submissionId = `submissions${playerNumber}`;
+            
+            const inputElement = document.getElementById(inputId);
+            const scoreElement = document.getElementById(scoreId);
+            const graphElement = document.getElementById(graphId);
+            const nameElement = document.getElementById(nameId);
+            const playerNameElement = document.getElementById(playerNameId);
+            const submissionElement = document.getElementById(submissionId);
+            
+            const playerName = nameElement.value || `Player ${playerNumber}`;
+            if (!playerNameSubmitted1 && playerNumber === 1) {
+                playerNameSubmitted1 = true;
+                nameElement.disabled = true; // Lock the input after the first submission
+            } else if (!playerNameSubmitted2 && playerNumber === 2) {
+                playerNameSubmitted2 = true;
+                nameElement.disabled = true; // Lock the input after the first submission
+            } else if (!playerNameSubmitted3 && playerNumber === 3) {
+                playerNameSubmitted3 = true;
+                nameElement.disabled = true; // Lock the input after the first submission
+            } else if (!playerNameSubmitted4 && playerNumber === 4) {
+                playerNameSubmitted4 = true;
+                nameElement.disabled = true; // Lock the input after the first submission
+            } else if (!playerNameSubmitted5 && playerNumber === 5) {
+                playerNameSubmitted5 = true;
+                nameElement.disabled = true; // Lock the input after the first submission
+            } else if (!playerNameSubmitted6 && playerNumber === 6) {
+                playerNameSubmitted6 = true;
+                nameElement.disabled = true; // Lock the input after the first submission
+            } else if (!playerNameSubmitted7 && playerNumber === 7) {
+                playerNameSubmitted7 = true;
+                nameElement.disabled = true; // Lock the input after the first submission
+            }
+
+            playerNameElement.textContent = playerName;
+            
+
+            
+            const newScore = parseFloat(inputElement.value) || 0;
+            const currentScore = parseFloat(scoreElement.textContent) || 0;
+            
+            const totalScore = currentScore + newScore;
+            scoreElement.textContent = totalScore.toFixed(2); // Display scores with two decimal places
+            
+            const maxScore = 100; // Set a maximum score for the graph
+            const graphWidth = (totalScore / maxScore) * 100;
+            graphElement.style.width = `${graphWidth}%`;
+            
+            inputElement.value = ''; // Clear the input field
+            
+            // Update the submission count
+            const currentSubmissions = parseInt(submissionElement.textContent) || 0;
+            submissionElement.textContent = currentSubmissions + 1;
+        }
+    </script>
 </body>
 </html>
