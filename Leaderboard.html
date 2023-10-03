@@ -88,7 +88,7 @@
         <thead>
             <tr>
                 <th>Navn</th>
-                <th>Daglig skærmtid selvangivelse</th>
+                <th>Daglig skærmtid (selvangivelse)</th>
                 <th></th> <!-- Empty cell for spacing -->
                 <th></th> <!-- Empty cell for spacing -->
                 <th>Antal dage</th>
@@ -158,6 +158,15 @@
 
 
     <script>
+        // Flag to track whether player name has been submitted
+        let playerNameSubmitted1 = false;
+        let playerNameSubmitted2 = false;
+        let playerNameSubmitted3 = false;
+        let playerNameSubmitted4 = false;
+        let playerNameSubmitted5 = false;
+        let playerNameSubmitted6 = false;
+        let playerNameSubmitted7 = false;
+
         // JavaScript to update scores, bar graphs, and submission count
         function updateScore(playerNumber) {
             const inputId = `input${playerNumber}`;
@@ -175,7 +184,32 @@
             const submissionElement = document.getElementById(submissionId);
             
             const playerName = nameElement.value || `Player ${playerNumber}`;
+            if (!playerNameSubmitted1 && playerNumber === 1) {
+                playerNameSubmitted1 = true;
+                nameElement.disabled = true; // Lock the input after the first submission
+            } else if (!playerNameSubmitted2 && playerNumber === 2) {
+                playerNameSubmitted2 = true;
+                nameElement.disabled = true; // Lock the input after the first submission
+            } else if (!playerNameSubmitted3 && playerNumber === 3) {
+                playerNameSubmitted3 = true;
+                nameElement.disabled = true; // Lock the input after the first submission
+            } else if (!playerNameSubmitted4 && playerNumber === 4) {
+                playerNameSubmitted4 = true;
+                nameElement.disabled = true; // Lock the input after the first submission
+            } else if (!playerNameSubmitted5 && playerNumber === 5) {
+                playerNameSubmitted5 = true;
+                nameElement.disabled = true; // Lock the input after the first submission
+            } else if (!playerNameSubmitted6 && playerNumber === 6) {
+                playerNameSubmitted6 = true;
+                nameElement.disabled = true; // Lock the input after the first submission
+            } else if (!playerNameSubmitted7 && playerNumber === 7) {
+                playerNameSubmitted7 = true;
+                nameElement.disabled = true; // Lock the input after the first submission
+            }
+
             playerNameElement.textContent = playerName;
+            
+
             
             const newScore = parseFloat(inputElement.value) || 0;
             const currentScore = parseFloat(scoreElement.textContent) || 0;
